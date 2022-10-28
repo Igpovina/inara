@@ -7,6 +7,15 @@ STATION_CHOICES = [
     ('ORBITAL', 'Orbital'),
     ('REFINERY', 'Refinery'),
 ]
+SHIP_MAKE_CHOICES = [
+    ('Zorgon Peterson','Zorgon Peterson'),
+    ('DELANCY','DeLacy'),
+    ('Saud Kruger', 'Saud Kruger'),
+    ('LAKON', 'Lakon Spaceways'),
+    ('GUTAMAYA', 'Gutamaya'),
+    ('Core Dynamics','Core Dynamics'),
+       
+]
 # Create your models here.
 class Station(models.Model):
     name = models.CharField(max_length = 30)
@@ -19,12 +28,16 @@ class Station(models.Model):
 class Ships(models.Model):
     make = models.CharField(max_length = 20)
     model = models.CharField(max_length = 20)
-    img = models.ImageField(upload_to = "ships/")
     location = models.ForeignKey(Station, on_delete = models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.model}'
     
     
 class Commander(models.Model):
     name = models.CharField(max_length = 30)
-    img = models.ImageField(upload_to = "cmdr/")
-    pub_date = models.DateField()
+    pub_date = models.DateField(blank = True)
     fleet = models.ForeignKey(Ships, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'CMDR {self.name}'

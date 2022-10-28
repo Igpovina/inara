@@ -1,6 +1,5 @@
 from django import forms
 from django import forms
-from django.forms import RadioSelect
 from .models import STATION_CHOICES, Ships, Station
 
 SATION_CHOICES = [
@@ -11,13 +10,12 @@ SATION_CHOICES = [
 
 class CommanderForm(forms.Form):
     name = forms.CharField(max_length = 30)
-    img = forms.ImageField()
+    # pub_date = forms.DateField()
     fleet = forms.ModelChoiceField(queryset=Ships.objects.all())
     
 class ShipsForm(forms.Form):
     make = forms.CharField(max_length = 30)
     model = forms.CharField(max_length = 30)
-    img = forms.ImageField()
     location = forms.ModelChoiceField(queryset=Station.objects.all())
     
 class StationForms(forms.Form):
