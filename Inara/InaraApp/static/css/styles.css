@@ -1,5 +1,6 @@
 body{
     background-color: #565251;
+    align-content: center;
 }
 
 .nav-bar {
@@ -23,7 +24,7 @@ body{
     list-style: none;
 }
 
-.container {
+.nav-container {
     display: flex;
     flex-wrap: inherit;
     align-items: center;
@@ -32,12 +33,26 @@ body{
     vertical-align: baseline;
 }
 .masthead{
-    justify-content: center;
-    background-image: image(background);
+    position: relative;
+    background-color: #343a40;
+    background: url("../images/background.jpg") no-repeat center center;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
 }
 
 .container_position_relative{
-    position: relative;
-    display: flex;
-    background-color: #565251;
+    content: "";
+    position: absolute;
+    background-color: #1c375e;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+.mb-5{
+    color: white;
+    margin-left: 25px;
 }
