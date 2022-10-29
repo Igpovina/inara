@@ -6,6 +6,7 @@ STATION_CHOICES = [
     ('CORIOLIS', 'Coriolis'),
     ('ORBITAL', 'Orbital'),
     ('REFINERY', 'Refinery'),
+    ('PLANETARY', 'Planetary'),
 ]
 SHIP_MAKE_CHOICES = [
     ('Zorgon Peterson','Zorgon Peterson'),

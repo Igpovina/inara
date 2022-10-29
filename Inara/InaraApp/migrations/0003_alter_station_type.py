@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='station',
             name='type',
-            field=models.CharField(choices=[('CORIOLIS', 'Coriolis'), ('ORBITAL', 'Orbital'), ('REFINERY', 'Refinery')], max_length=30),
+            field=models.CharField(choices=[('CORIOLIS', 'Coriolis'), ('ORBITAL', 'Orbital'), ('REFINERY', 'Refinery'), ('PLANETARY', 'Planetary')], max_length=30),
         ),
     ]

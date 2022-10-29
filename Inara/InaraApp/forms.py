@@ -2,11 +2,6 @@ from django import forms
 from django import forms
 from .models import STATION_CHOICES, Ships, Station
 
-SATION_CHOICES = [
-    ('CORIOLIS', 'Coriolis'),
-    ('ORBITAL', 'Orbital'),
-    ('REFINERY', 'Refinery'),
-]
 
 class CommanderForm(forms.Form):
     name = forms.CharField(max_length = 30)
