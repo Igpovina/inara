@@ -29,6 +29,7 @@ class Station(models.Model):
 class Ships(models.Model):
     make = models.CharField(max_length = 20)
     model = models.CharField(max_length = 20)
+    img = models.ImageField(null=True, blank=True, upload_to="images/")
     location = models.ForeignKey(Station, on_delete = models.CASCADE)
     
     def __str__(self):

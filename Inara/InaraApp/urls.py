@@ -16,3 +16,8 @@ urlpatterns = [
     path('search-commander/', views.search_commander, name='search_commander'),
     path('search/', views.search, name='search'),
 ]
+htmx_urlpatterns = [
+    
+]
+
+urlpatterns += htmx_urlpatterns

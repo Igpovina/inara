@@ -1,5 +1,4 @@
 from django import forms
-from django import forms
 from .models import STATION_CHOICES, Ships, Station
 
 
@@ -8,10 +7,10 @@ class CommanderForm(forms.Form):
     # pub_date = forms.DateField()
     fleet = forms.ModelChoiceField(queryset=Ships.objects.all())
     
-class ShipsForm(forms.Form):
-    make = forms.CharField(max_length = 30)
-    model = forms.CharField(max_length = 30)
-    location = forms.ModelChoiceField(queryset=Station.objects.all())
+class ShipsForm(forms.ModelForm):
+    class Meta:
+        model = Ships
+        fields = ("make", "model", "img", "location")
     
 class StationForms(forms.Form):
     name = forms.CharField(max_length = 30)

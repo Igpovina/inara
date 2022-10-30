@@ -1,3 +1,4 @@
+from email.mime import image
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
@@ -28,11 +29,13 @@ def add_commander(request):
 
 def add_ships(request):
     if request.method == 'POST':
-        my_form = ShipsForm(request.POST)
-        if my_form.is_valid():
-            data = my_form.cleaned_data
-            ship = Ships(make = data['make'].capitalize(), model = data['model'].capitalize(), location = data['location'])
-            ship.save()
+        # my_form = ShipsForm(request.POST, request.FILES)
+        # if my_form.is_valid():
+        #     data = my_form.cleaned_data
+        #     ship = Ships(make = request.POST['make'].capitalize(), model = request.POST['model'].capitalize(), img=request.FILES, location = request.POST['location'])
+        form = ShipsForm(data=request.POST, files=request.FILES)
+        if form.is_valid:
+            form.save()
             return redirect('index')
     else:
         my_form = ShipsForm()
@@ -83,6 +86,7 @@ class Commander_Detail(DetailView):
     context_object_name = 'commander'
     
 def search_commander(request):
+    
     return render(request, 'search_commander.html')
 
 def search(request):

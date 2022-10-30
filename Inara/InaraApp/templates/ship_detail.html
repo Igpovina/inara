@@ -2,6 +2,16 @@
 
 
 {% block changes %}
-    {{ship}}
+<div>
+    <h4>{{ship}}</h4>
+    <div>
+
+        {% if ship.img %}
+        <img src="{{ ship.img.url }}" alt="image" class="image-thumbnail">        
+        {% endif %}
+        
+    </div>
+
+</div>
 {% endblock changes %}
     

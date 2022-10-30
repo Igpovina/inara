@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
     <title>Index</title>
 </head>
 <body>
@@ -15,7 +16,13 @@
             <a class="nav-bar" href="{% url 'commander_list' %}">Commanders</a>
             <a class="nav-bar" href="{% url 'ship_list' %}">Ships</a>
             <a class="nav-bar" href="{% url 'station_list' %}">Stations</a>
-            <a href="{% url 'search_commander' %}">Search Commander</a>
+            <form action="{% url 'search'%}" method="GET">{% csrf_token %}
+                
+                <input type="text"
+                    name="commander"
+                    placeholder="Type commander">
+                <input type="submit" value="search">
+            </form>
         </div>
     </nav>
     
