@@ -3,7 +3,8 @@
 
 {% block changes %}
     {% for station in stations %}
-        <a href="{% url 'station_detail' station.id %}"><li>{{station.name}} - {{station.system}} - {{station.type}}</li></a>        
+        <a href="{% url 'station_detail' station.id %}">
+            <p>{{station.name}} - {{station.system}} - {{station.type}}</p></a>        
     {% endfor %}
 
     <button type="submit"><a href="{% url 'add_station'%}">Add Station</a></button>

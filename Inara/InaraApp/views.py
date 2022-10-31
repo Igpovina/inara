@@ -1,5 +1,5 @@
 from email.mime import image
-from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from django.utils import timezone
@@ -22,7 +22,7 @@ def add_commander(request):
             commander = Commander(name = data['name'].capitalize(), fleet = data['fleet'])
             commander.pub_date = datetime.now()
             commander.save()
-            return redirect('index')
+            return redirect('commander_list')
     else:
         my_form = CommanderForm()
         return render(request, 'add_commander.html', {'my_form':my_form})
@@ -36,7 +36,7 @@ def add_ships(request):
         form = ShipsForm(data=request.POST, files=request.FILES)
         if form.is_valid:
             form.save()
-            return redirect('index')
+            return redirect('ship_list')
     else:
         my_form = ShipsForm()
         return render(request, 'add_ships.html', {'my_form':my_form})
@@ -48,7 +48,7 @@ def add_station(request):
             data = my_form.cleaned_data
             station = Station(name = data['name'].capitalize(), type = data['type'], system = data['system'].capitalize())
             station.save()
-            return redirect('index')
+            return redirect('station_list')
         
     else:
         my_form = StationForms()
@@ -92,4 +92,8 @@ def search_commander(request):
 def search(request):
     name = request.GET['commander'].capitalize()
     commander = Commander.objects.get(name=name)
-    return render(request, 'search.html', {'commander':commander})
+    if commander:
+        return render(request, 'search.html', {'commander':commander})
+    else:
+        response = 'Commander not found'
+        return HttpResponseRedirect('/InaraApp', {'response':response})

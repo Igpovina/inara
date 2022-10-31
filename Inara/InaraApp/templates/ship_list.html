@@ -3,7 +3,8 @@
 
 {% block changes %}
     {% for ship in ships %}
-        <a href="{% url 'ship_detail' ship.id %}"><li>{{ship.make}} - {{ship.model}}</li></a>        
+        <a href="{% url 'ship_detail' ship.id %}">
+            <p>{{ship.make}} - {{ship.model}}</p></a>        
     {% endfor %}
 
     <button type="submit"><a href="{% url 'add_ships'%}">Add Ship</a></button>
