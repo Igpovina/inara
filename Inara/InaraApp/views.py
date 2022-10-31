@@ -92,8 +92,5 @@ def search_commander(request):
 def search(request):
     name = request.GET['commander'].capitalize()
     commander = Commander.objects.get(name=name)
-    if commander:
-        return render(request, 'search.html', {'commander':commander})
-    else:
-        response = 'Commander not found'
-        return HttpResponseRedirect('/InaraApp', {'response':response})
+    return render(request, 'search.html', {'commander':commander})
+    
