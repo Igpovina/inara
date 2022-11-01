@@ -85,7 +85,15 @@ def search_commander(request):
     
     return render(request, 'search_commander.html')
 
-def search(request):
-    name = request.GET['commander'].capitalize()
-    commander = Commander.objects.get(name=name)
-    return render(request, 'search.html', {'commander':commander})
+class Search(ListView):
+    model = Commander
+    template_name = "search.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("commander")
+        if query=="":
+            response = 'Commander not Found'
+            HttpResponseRedirect('/InaraApp/', {'response':response})
+        else:    
+            object_list = Commander.objects.filter(Q(name__icontains=query))       
+            return (object_list)
