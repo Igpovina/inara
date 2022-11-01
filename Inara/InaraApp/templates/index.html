@@ -20,8 +20,8 @@
                 
                 <input type="text"
                     name="commander"
-                    placeholder="Type commander">
-                <input type="submit" value="search">
+                    placeholder="Type CMDR Name">
+                <input type="submit" value="Search">
             </form>
         </div>
     </nav>
@@ -50,12 +50,16 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         
+                        
+                            
                     </div>
                 </div>
             </div>
         </div>
     </header>
     {% endblock changes %}
-        
+    {% if response %}
+        <h4>{{response}}</h4>
+    {% endif %} 
 </body>
 </html>

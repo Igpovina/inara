@@ -2,8 +2,20 @@
 
 
 {% block changes %}
+    
+    {% if object_list %}
 
-    <p>CMDR {{commander.name}}</p>
+        {% for commander in object_list %}
+
+          <p>CMDR {{commander.name}} - {{commander.fleet}}</p>
+
+        {% endfor %}
+    {% else %}
+        <h4>{{response}}</h4>
+    {% endif %}
+    
+        
+        
 
     <a href="{% url 'index' %}">Inicio</a>
 {% endblock changes %}

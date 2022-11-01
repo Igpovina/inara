@@ -1,5 +1,4 @@
 from datetime import datetime
-from pyexpat import model
 from django.db import models
 
 STATION_CHOICES = [
@@ -15,7 +14,6 @@ SHIP_MAKE_CHOICES = [
     ('LAKON', 'Lakon Spaceways'),
     ('GUTAMAYA', 'Gutamaya'),
     ('Core Dynamics','Core Dynamics'),
-       
 ]
 # Create your models here.
 class Station(models.Model):

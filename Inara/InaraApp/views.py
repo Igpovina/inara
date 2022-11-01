@@ -1,6 +1,6 @@
-from email.mime import image
+from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from datetime import datetime
 from django.utils import timezone
 from django.views.generic import ListView
@@ -29,10 +29,6 @@ def add_commander(request):
 
 def add_ships(request):
     if request.method == 'POST':
-        # my_form = ShipsForm(request.POST, request.FILES)
-        # if my_form.is_valid():
-        #     data = my_form.cleaned_data
-        #     ship = Ships(make = request.POST['make'].capitalize(), model = request.POST['model'].capitalize(), img=request.FILES, location = request.POST['location'])
         form = ShipsForm(data=request.POST, files=request.FILES)
         if form.is_valid:
             form.save()
@@ -54,7 +50,7 @@ def add_station(request):
         my_form = StationForms()
         return render(request, 'add_station.html', {'my_form':my_form})
     
-class Staition_List(ListView):
+class Station_List(ListView):
     model = Station
     template_name = 'station_list.html'
     context_object_name = 'stations'
@@ -89,7 +85,26 @@ def search_commander(request):
     
     return render(request, 'search_commander.html')
 
-def search(request):
-    name = request.GET['commander'].capitalize()
-    commander = Commander.objects.get(name=name)
-    return render(request, 'search.html', {'commander':commander})
+# def search(request):
+#     if request.GET['commander']:
+#         name = request.GET['commander'].capitalize()
+#         commander = Commander.objects.get(name=name)
+#         return render(request, 'search.html', {'commander':commander})
+#     else:
+#         response = 'Commander not found'
+#         return HttpResponseRedirect('/InaraApp/', {'response':response})
+
+class Search(ListView):
+    model = Commander
+    template_name = "search.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("commander")
+        if query=="":
+            response = 'Commander not Found'
+            HttpResponseRedirect('/InaraApp/', {'response':response})
+        else:    
+            object_list = Commander.objects.filter(Q(name__icontains=query))        
+            return (object_list)
+        
+            
