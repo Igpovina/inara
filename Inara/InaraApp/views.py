@@ -1,11 +1,12 @@
 from email.mime import image
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from datetime import datetime
 from django.utils import timezone
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from .models import Commander, Ships, Station
+from django.db.models import Q
 from .forms import ShipsForm, StationForms, CommanderForm
 # Create your views here.
 
