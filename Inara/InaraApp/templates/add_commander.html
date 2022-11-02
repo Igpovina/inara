@@ -5,7 +5,7 @@
     
 <form action="{%url 'add_commander' %}" method="POST">{% csrf_token %}
 
-    {{my_form.as_table}}
+    {{form.as_p}}
 
     <input type="submit" name="Submit">
 </form>

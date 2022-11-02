@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('add-commander/', views.add_commander, name='add_commander'),
+    path('', views.index, name='index'),
+    path('add-commander/', views.Add_Commander.as_view(), name='add_commander'),
     path('add-ships/', views.add_ships, name='add_ships'),
     path('add-station/', views.add_station, name='add_station'),
-    path('', views.index, name='index'),
     path('station-list/', views.Station_List.as_view(), name='station_list'),
     path('station-detail/<pk>', views.Station_Detail.as_view(), name='station_detail'),
     path('ship-list/', views.Ships_List.as_view(), name='ship_list'),
@@ -15,9 +16,12 @@ urlpatterns = [
     path('commander-detail/<pk>', views.Commander_Detail.as_view(), name='commander_detail'),
     path('search-commander/', views.search_commander, name='search_commander'),
     path('search/', views.Search.as_view(), name='search'),
+    path('login/', views.login_user, name='login'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('logout/', LogoutView.as_view(), name='logout')
 ]
-htmx_urlpatterns = [
-    
+htmx_views = [
+    path('check_username/', views.check_username, name='check_username'),
 ]
 
-urlpatterns += htmx_urlpatterns
+urlpatterns+=htmx_views

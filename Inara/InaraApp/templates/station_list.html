@@ -2,11 +2,13 @@
 
 
 {% block changes %}
+<div class="container">
     {% for station in stations %}
-        <a href="{% url 'station_detail' station.id %}">
+        <a href="{% url 'station_detail' station.id %}" class="a-link">
             <p>{{station.name}} - {{station.system}} - {{station.type}}</p></a>        
     {% endfor %}
 
     <button type="submit"><a href="{% url 'add_station'%}">Add Station</a></button>
+</div>
 {% endblock changes %}
     

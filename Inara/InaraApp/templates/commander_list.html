@@ -3,10 +3,13 @@
 
 
 {% block changes %}
+<div class="container">
     {% for commander in commanders %}
-        <a href="{% url 'commander_detail' commander.id %}">
-            <p>{{commander.name}} - {{commander.fleet}}</p></a>        
+        <a href="{% url 'commander_detail' commander.id %}" class="a-link">
+            <p>{{commander.name}} - Member since {{commander.pub_date}}</p></a>        
     {% endfor %}
 
     <button type="submit"><a href="{% url 'add_commander'%}">Add Commander</a></button>
+</div>
 {% endblock changes %}
+

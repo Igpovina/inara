@@ -2,11 +2,13 @@
 
 
 {% block changes %}
+<div class="container">
     {% for ship in ships %}
-        <a href="{% url 'ship_detail' ship.id %}">
+        <a href="{% url 'ship_detail' ship.id %}" class="a-link">
             <p>{{ship.make}} - {{ship.model}}</p></a>        
     {% endfor %}
 
     <button type="submit"><a href="{% url 'add_ships'%}">Add Ship</a></button>
+</div>
 {% endblock changes %}
     

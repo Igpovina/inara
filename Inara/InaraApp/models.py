@@ -1,5 +1,7 @@
 from datetime import datetime
+from django.utils import timezone
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 STATION_CHOICES = [
     ('CORIOLIS', 'Coriolis'),
@@ -36,8 +38,12 @@ class Ships(models.Model):
     
 class Commander(models.Model):
     name = models.CharField(max_length = 30)
-    pub_date = models.DateField(blank = True)
-    fleet = models.ForeignKey(Ships, on_delete=models.CASCADE)
+    pub_date = models.DateField(blank = True, default=timezone.now)
+    fleet = models.ManyToManyField(Ships)
     
     def __str__(self):
         return f'CMDR {self.name}'
+
+
+class User(AbstractUser):
+    pass
